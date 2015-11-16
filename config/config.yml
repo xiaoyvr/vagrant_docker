@@ -1,0 +1,51 @@
+#docker run -d -p 5000:5000 --restart=always --name registry -v `pwd`/config.yml:/etc/docker/registry/config.yml -v `pwd`/htpasswd:/etc/docker/registry/htpasswd -v `pwd`/ssl:/etc/docker/registry/ssl/ registry:2
+version: 0.1
+log:
+  level: debug
+  formatter: text
+  fields:
+    service: registry
+    environment: staging
+storage:
+  filesystem:
+    rootdirectory: /var/lib/registry
+#net/http: transport closed before response was received
+#  delete:
+#    enabled: false
+#  redirect:
+#    disable: false
+#  cache:
+#    blobdescriptor: redis
+#  maintenance:
+#    uploadpurging:
+#      enabled: true
+#      age: 168h
+#      interval: 24h
+#      dryrun: false
+#    readonly:
+#      enabled: false
+
+# no basic auth credentials
+#auth:
+#  htpasswd:
+#    realm: basic-realm
+#    path: /etc/docker/registry/htpasswd
+http:
+  addr: :5000
+  # f804317e9103: Pushing 1.024 kB
+  #  tls: oversized record received with length 20527
+  # 加上会导致这个问题
+  host: https://registry.thoughtworks.com:5000
+  secret: asecretforlocaldevelopment
+  tls:
+      certificate: /etc/docker/registry/ssl/certs/server-cert.pem
+      key: /etc/docker/registry/ssl/private/server-key.pem
+  debug:
+    addr: 0.0.0.0:5001
+  headers:
+    X-Content-Type-Options: [nosniff]
+# 不注释会导致500
+#proxy:
+#  remoteurl: https://registry-1.docker.io
+#  username: jksun
+#  password: jksun
