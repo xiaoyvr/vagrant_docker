@@ -23,7 +23,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 #        " | sudo pfctl -f - > /dev/null 2>&1; echo "==> Fowarding Ports: 80 -> 8080, 443 -> 8443"')
 #  end
   config.vm.provider "virtualbox" do |v|
-    v.customize ["modifyvm", :id, "--memory", "5120"]
+    v.customize ["modifyvm", :id, "--memory", "2048"]
     v.customize ["modifyvm", :id, "--cpus", "5"]
     v.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
   end
