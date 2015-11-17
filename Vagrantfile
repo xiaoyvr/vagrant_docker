@@ -39,7 +39,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     local.vm.network "forwarded_port", host: 6379, guest: 6379
     local.vm.network "forwarded_port", host: 63791, guest: 63791
     local.vm.network "forwarded_port", host: 26379, guest: 26379
-	local.vm.network "public_network"
     local.vm.synced_folder "./config", "/var/docker/config"
   end
 
