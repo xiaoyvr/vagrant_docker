@@ -1,8 +1,8 @@
 #!/bin/sh
 #update guest addon
-wget http://download.virtualbox.org/virtualbox/5.0.8/VBoxGuestAdditions_5.0.8.iso
+wget http://download.virtualbox.org/virtualbox/5.0.10/VBoxGuestAdditions_5.0.10.iso
 sudo mkdir -p /mnt/iso
-mount -t iso9660 -o loop VBoxGuestAdditions_5.0.8.iso /mnt/iso/
+mount -t iso9660 -o loop VBoxGuestAdditions_5.0.10.iso /mnt/iso/
 sudo /mnt/iso/VBoxLinuxAdditions.run
 sudo yum -y update
 curl -sSL https://get.docker.com/ | sh
